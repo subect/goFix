@@ -30,3 +30,4 @@
 2022-11-10T00:04:59.883+0800	DEBUG	goFix/main.go:22	conf.Service.ServerPort:8080
 2022-11-10T00:05:04.240+0800	DEBUG	router/router.go:22	go into hello!
 2022-11-10T00:05:04.675+0800	DEBUG	router/router.go:22	go into hello!
+2022-11-10T00:32:40.944+0800	DEBUG	goFix/main.go:22	conf.Service.ServerPort:8080
