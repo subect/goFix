@@ -7,17 +7,19 @@ import (
 	"net/http"
 )
 
-func Init() *gin.Engine {
+func InitRouter() *gin.Engine {
 	router := gin.Default()
 	router.Use(Mid())
 
 	router.GET("/", Hello)
+	router.POST("/", Hello)
 
 	return router
 }
 
 func Hello(c *gin.Context) {
 	if c.Request.Method == "GET" {
+		basicLog.Debugln("go into hello!")
 		c.JSON(200, "Success")
 	}
 	if c.Request.Method == "POST" {
@@ -25,6 +27,7 @@ func Hello(c *gin.Context) {
 		if err != nil {
 			fmt.Println(err.Error())
 		}
+		basicLog.Debugf("resp:%+v", string(bs))
 		c.JSON(200, string(bs))
 	}
 	//c.JSON(200, "Good")

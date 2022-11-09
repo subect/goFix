@@ -1,0 +1,32 @@
+2022-11-09T23:55:23.394+0800	DEBUG	goFix/main.go:21	conf.Service.ServerPort:8080
+2022-11-09T23:57:56.821+0800	DEBUG	goFix/main.go:21	conf.Service.ServerPort:8080
+2022-11-09T23:59:32.184+0800	DEBUG	goFix/main.go:22	conf.Service.ServerPort:8080
+2022-11-09T23:59:35.051+0800	DEBUG	router/router.go:21	go into hello!
+2022-11-09T23:59:36.189+0800	DEBUG	router/router.go:21	go into hello!
+2022-11-09T23:59:36.805+0800	DEBUG	router/router.go:21	go into hello!
+2022-11-10T00:00:59.928+0800	DEBUG	goFix/main.go:22	conf.Service.ServerPort:8080
+2022-11-10T00:01:15.938+0800	DEBUG	router/router.go:21	go into hello!
+2022-11-10T00:01:16.726+0800	DEBUG	router/router.go:21	go into hello!
+2022-11-10T00:01:17.226+0800	DEBUG	router/router.go:21	go into hello!
+2022-11-10T00:02:47.379+0800	DEBUG	goFix/main.go:22	conf.Service.ServerPort:8080
+2022-11-10T00:02:51.894+0800	DEBUG	router/router.go:30	resp:{
+    "name":"huxiang",
+    "sex":"1",
+    "hobby":"basketball"
+}
+2022-11-10T00:02:53.209+0800	DEBUG	router/router.go:30	resp:{
+    "name":"huxiang",
+    "sex":"1",
+    "hobby":"basketball"
+}
+2022-11-10T00:02:53.891+0800	DEBUG	router/router.go:30	resp:{
+    "name":"huxiang",
+    "sex":"1",
+    "hobby":"basketball"
+}
+2022-11-10T00:02:58.820+0800	DEBUG	router/router.go:22	go into hello!
+2022-11-10T00:02:59.441+0800	DEBUG	router/router.go:22	go into hello!
+2022-11-10T00:02:59.924+0800	DEBUG	router/router.go:22	go into hello!
+2022-11-10T00:04:59.883+0800	DEBUG	goFix/main.go:22	conf.Service.ServerPort:8080
+2022-11-10T00:05:04.240+0800	DEBUG	router/router.go:22	go into hello!
+2022-11-10T00:05:04.675+0800	DEBUG	router/router.go:22	go into hello!

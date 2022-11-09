@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"goFix/config"
 	router2 "goFix/router"
 	"net/http"
 	"os"
@@ -14,8 +15,12 @@ import (
 func main() {
 	var wg sync.WaitGroup
 	wg.Add(1)
-	router := router2.Init()
-	port := ":" + "8080"
+	conf := config.InitConfig()
+	basicLog := conf.Logger()
+	router2.Init()
+	router := router2.InitRouter()
+	basicLog.Debugf("conf.Service.ServerPort:%s", conf.Service.ServerPort)
+	port := ":" + conf.Service.ServerPort
 	server := &http.Server{
 		Addr:         port,
 		Handler:      router,
@@ -34,7 +39,7 @@ func main() {
 		}
 	}()
 
-	fmt.Printf("gin run on port:%v ", port)
+	//fmt.Printf("gin run on port:%v ", port)
 	sigChan := make(chan os.Signal, 2)
 	signal.Notify(sigChan, syscall.SIGHUP, syscall.SIGINT, syscall.SIGQUIT, syscall.SIGTERM)
 	fmt.Println("use c-c to exit")
