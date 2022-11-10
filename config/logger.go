@@ -5,6 +5,7 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"os"
+	"runtime"
 )
 
 var sugarLogger *zap.SugaredLogger
@@ -44,7 +45,12 @@ func getEncoder() zapcore.Encoder {
 }
 
 func getLogPath() string {
-	return os.Getenv("GOPATH") + "/goFix/logger/goFix.log"
+	if runtime.GOOS == "windows" {
+		return os.Getenv("GOPATH") + "\\src\\goFix\\logger\\goFix.log"
+	} else {
+		return os.Getenv("GOPATH") + "/goFix/logger/goFix.log"
+	}
+	//return os.Getenv("GOPATH") + "/goFix/logger/goFix.log"
 }
 
 func getLogWriter() zapcore.WriteSyncer {

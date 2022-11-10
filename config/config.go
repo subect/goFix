@@ -5,6 +5,7 @@ import (
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"os"
+	"runtime"
 	"sync"
 )
 
@@ -57,7 +58,14 @@ func getDefaultConfigPath() string {
 	if deFaultConfigPath != "" {
 		return deFaultConfigPath
 	}
-	configFile := os.Getenv("GOPATH") + "/goFix/config/config.yaml"
+	configFile := ""
+	if runtime.GOOS == "windows" {
+		configFile = os.Getenv("GOPATH") + "\\src\\goFix\\logger\\goFix.log"
+	} else {
+		configFile = os.Getenv("GOPATH") + "/goFix/logger/goFix.log"
+	}
+
+	configFile = os.Getenv("GOPATH") + "/goFix/config/config.yaml"
 	return configFile
 }
 
