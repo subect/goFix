@@ -31,3 +31,45 @@
 2022-11-10T00:05:04.240+0800	DEBUG	router/router.go:22	go into hello!
 2022-11-10T00:05:04.675+0800	DEBUG	router/router.go:22	go into hello!
 2022-11-10T00:32:40.944+0800	DEBUG	goFix/main.go:22	conf.Service.ServerPort:8080
+2022-11-10T20:06:32.844+0800	DEBUG	goFix/main.go:22	conf.Service.ServerPort:8080
+2022-11-10T20:06:48.656+0800	DEBUG	router/router.go:22	go into hello!
+2022-11-10T20:06:49.523+0800	DEBUG	router/router.go:22	go into hello!
+2022-11-10T20:06:54.181+0800	DEBUG	router/router.go:30	resp:
+2022-11-10T20:06:55.215+0800	DEBUG	router/router.go:30	resp:
+2022-11-10T20:07:06.051+0800	DEBUG	router/router.go:30	resp:{
+    "name":"huxiang",
+    "sex":"1",
+    "hobby":"basketball"
+}
+2022-11-10T20:07:07.003+0800	DEBUG	router/router.go:30	resp:{
+    "name":"huxiang",
+    "sex":"1",
+    "hobby":"basketball"
+}
+2022-11-10T20:07:51.451+0800	DEBUG	goFix/main.go:22	conf.Service.ServerPort:8080
+2022-11-10T20:08:00.380+0800	DEBUG	router/router.go:22	go into hello!
+2022-11-10T20:08:01.019+0800	DEBUG	router/router.go:22	go into hello!
+2022-11-10T20:08:01.517+0800	DEBUG	router/router.go:22	go into hello!
+2022-11-10T22:01:36.094+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:03:27.924+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:04:27.626+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:06:35.601+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:12:36.553+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:13:38.418+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:15:46.068+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:18:12.077+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:21:01.298+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:23:22.308+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:24:28.435+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:24:31.369+0800	ERROR	api/mysqlHx.go:28	error creating Animal:Error 1146: Table 'huxiang.Animal' doesn't exist
+2022-11-10T22:24:31.370+0800	DEBUG	api/mysqlHx.go:30	success create table
+2022-11-10T22:26:37.901+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:27:01.815+0800	DEBUG	api/mysqlHx.go:30	success create table
+2022-11-10T22:31:40.840+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:42:09.190+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:47:52.103+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:48:01.240+0800	ERROR	api/mysqlHx.go:35	error creating Animal:Error 1146: Table 'huxiang.animals' doesn't exist
+2022-11-10T22:49:03.062+0800	ERROR	api/mysqlHx.go:35	error creating Animal:Error 1146: Table 'huxiang.animals' doesn't exist
+2022-11-10T22:50:48.150+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:51:15.967+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080
+2022-11-10T22:51:48.138+0800	DEBUG	goFix/main.go:26	conf.Service.ServerPort:8080

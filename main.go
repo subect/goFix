@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"goFix/api"
 	"goFix/config"
+	"goFix/dao"
 	router2 "goFix/router"
 	"net/http"
 	"os"
@@ -17,6 +19,8 @@ func main() {
 	wg.Add(1)
 	conf := config.InitConfig()
 	basicLog := conf.Logger()
+	dao.InitDb()
+	api.Init()
 	router2.Init()
 	router := router2.InitRouter()
 	basicLog.Debugf("conf.Service.ServerPort:%s", conf.Service.ServerPort)

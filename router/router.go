@@ -3,6 +3,7 @@ package router
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"goFix/api"
 	"io/ioutil"
 	"net/http"
 )
@@ -13,6 +14,7 @@ func InitRouter() *gin.Engine {
 
 	router.GET("/", Hello)
 	router.POST("/", Hello)
+	router.GET("/trainDb", api.Mysqltd)
 
 	return router
 }

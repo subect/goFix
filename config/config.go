@@ -10,6 +10,7 @@ import (
 )
 
 type Configuration struct {
+	DevMode     bool        `yaml:"devMode"`
 	RedisServer RedisServer `yaml:"redisServer"`
 	Service     Service     `yaml:"service"`
 	MysqlServer MysqlServer `yaml:"mysqlServer"`
@@ -20,9 +21,11 @@ type Service struct {
 }
 
 type MysqlServer struct {
-	Address  string `yaml:"address"`
-	UserName string `yaml:"userName"`
-	PassWord string `yaml:"passWord"`
+	Address       string `yaml:"address"`
+	UserName      string `yaml:"userName"`
+	PassWord      string `yaml:"passWord"`
+	MysqlMaxDBs   int    `yaml:"mysqlMaxDBs"`
+	DefaultDbName string `yaml:"defaultDbName"`
 }
 
 type RedisServer struct {

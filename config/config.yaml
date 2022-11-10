@@ -1,10 +1,14 @@
+devMode: true
+
 service:
   serverPort: "8080"
 
 mysqlServer:
-  addres: "127.0.0.1"
+  address: "127.0.0.1"
   userName: "root"
   passWord: "123456"
+  mysqlMaxDBs: 30
+  defaultDbName: "huxiang"
 
 redisServer:
   addres: "127.0.0.1"
