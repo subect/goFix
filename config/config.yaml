@@ -1,7 +1,7 @@
 devMode: true
 
 service:
-  serverPort: "8080"
+  serverPort: "8888"
 
 mysqlServer:
   address: "127.0.0.1"

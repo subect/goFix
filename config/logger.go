@@ -46,7 +46,8 @@ func getEncoder() zapcore.Encoder {
 
 func getLogPath() string {
 	if runtime.GOOS == "windows" {
-		return os.Getenv("GOPATH") + "\\src\\goFix\\logger\\goFix.log"
+		//return os.Getenv("GOPATH") + "\\src\\goFix\\logger\\goFix.log"
+		return "./logger/goFix.log"
 	} else {
 		return os.Getenv("GOPATH") + "/goFix/logger/goFix.log"
 	}

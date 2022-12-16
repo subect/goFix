@@ -2,10 +2,7 @@ package config
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v2"
-	"io/ioutil"
-	"os"
-	"runtime"
+	"github.com/spf13/viper"
 	"sync"
 )
 
@@ -62,26 +59,40 @@ func getDefaultConfigPath() string {
 		return deFaultConfigPath
 	}
 	configFile := ""
-	if runtime.GOOS == "windows" {
-		configFile = os.Getenv("GOPATH") + "\\src\\goFix\\logger\\goFix.log"
-	} else {
-		configFile = os.Getenv("GOPATH") + "/goFix/logger/goFix.log"
-	}
+	//if runtime.GOOS == "windows" {
+	//	//configFile = os.Getenv("GOPATH") + "\\src\\goFix\\logger\\goFix.log"
+	//	configFile = "./logger/goFix.log"
+	//} else {
+	//	configFile = os.Getenv("GOPATH") + "/goFix/logger/goFix.log"
+	//}
 
-	configFile = os.Getenv("GOPATH") + "/goFix/config/config.yaml"
+	//configFile = os.Getenv("GOPATH") + "/goFix/config/config.yaml"
+	configFile = "./config/config.yaml"
 	return configFile
 }
 
 func initConfig() (config *Configuration, err error) {
 	conf := NewConfig()
-	configPath := getDefaultConfigPath()
-	yamlFile, err := ioutil.ReadFile(configPath)
+	//configPath := getDefaultConfigPath()
+	//yamlFile, err := os.ReadFile(configPath)
+	//if err != nil {
+	//	fmt.Println(err.Error())
+	//}
+	//err = yaml.Unmarshal(yamlFile, conf)
+	//if err != nil {
+	//	fmt.Println(err.Error())
+	//}
+	vp := viper.New()
+	vp.SetConfigName("config")
+	vp.SetConfigType("yaml")
+	vp.AddConfigPath("./config/")
+	err = vp.ReadInConfig()
 	if err != nil {
-		fmt.Println(err.Error())
+		panic(fmt.Errorf("Fatal error config file: %s\n", err))
 	}
-	err = yaml.Unmarshal(yamlFile, conf)
+	err = vp.Unmarshal(conf)
 	if err != nil {
-		fmt.Println(err.Error())
+		panic(fmt.Errorf("unable to decode into struct, %v", err))
 	}
 	rootConfig = conf
 	return

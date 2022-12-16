@@ -48,7 +48,8 @@ func Mysqltd(c *gin.Context) {
 		return
 	}
 	var result Animal
-	db.Table("animal").Where(&Animal{AnimalId: animalIdq}).Find(&result)
+	//db.Table("animal").Where(&Animal{AnimalId: animalIdq}).Find(&result)
+	db.Table("animal").Where("beast_id = ?", animalIdq).Find(&result)
 	//basicLog.Debugln("success create table")
 	c.JSON(200, result)
 

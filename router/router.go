@@ -15,6 +15,10 @@ func InitRouter() *gin.Engine {
 	router.GET("/", Hello)
 	router.POST("/", Hello)
 	router.GET("/trainDb", api.Mysqltd)
+	router.POST("/validator", api.Validator)
+	router.GET("/pinyin", api.Pinyin)
+	router.POST("/filerKeyWords", api.FilerKeyWords)
+	router.GET("viper", api.Viper)
 
 	return router
 }
