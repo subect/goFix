@@ -4,7 +4,7 @@ service:
   serverPort: "8888"
 
 mysqlServer:
-  address: "127.0.0.1"
+  address: "127.0.0.1:6379"
   userName: "root"
   passWord: "123456"
   mysqlMaxDBs: 30
@@ -13,3 +13,8 @@ mysqlServer:
 redisServer:
   addres: "127.0.0.1"
   redisPassword: "123456"
+
+esServer:
+  hosts: "http://127.0.0.1:9200"
+  esUser: ""
+  esPassword: ""

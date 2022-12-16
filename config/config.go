@@ -8,9 +8,16 @@ import (
 
 type Configuration struct {
 	DevMode     bool        `yaml:"devMode"`
-	RedisServer RedisServer `yaml:"redisServer"`
 	Service     Service     `yaml:"service"`
 	MysqlServer MysqlServer `yaml:"mysqlServer"`
+	RedisServer RedisServer `yaml:"redisServer"`
+	EsServer    EsServer    `yaml:"esServer"`
+}
+
+type EsServer struct {
+	EsHost   string `yaml:"hosts"`
+	EsUser   string `yaml:"esUser"`
+	EsPasswd string `yaml:"esPassword"`
 }
 
 type Service struct {
@@ -40,7 +47,7 @@ var rootConfig *Configuration
 
 func InitConfig() *Configuration {
 	once.Do(func() {
-		if _, err := initConfig(); err != nil {
+		if err := initConfig(); err != nil {
 			panic(err)
 		}
 	})
@@ -71,7 +78,7 @@ func getDefaultConfigPath() string {
 	return configFile
 }
 
-func initConfig() (config *Configuration, err error) {
+func initConfig() error {
 	conf := NewConfig()
 	//configPath := getDefaultConfigPath()
 	//yamlFile, err := os.ReadFile(configPath)
@@ -86,7 +93,7 @@ func initConfig() (config *Configuration, err error) {
 	vp.SetConfigName("config")
 	vp.SetConfigType("yaml")
 	vp.AddConfigPath("./config/")
-	err = vp.ReadInConfig()
+	err := vp.ReadInConfig()
 	if err != nil {
 		panic(fmt.Errorf("Fatal error config file: %s\n", err))
 	}
@@ -95,5 +102,5 @@ func initConfig() (config *Configuration, err error) {
 		panic(fmt.Errorf("unable to decode into struct, %v", err))
 	}
 	rootConfig = conf
-	return
+	return err
 }

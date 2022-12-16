@@ -1,10 +1,9 @@
-package dao
+package model
 
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	"goFix/config"
-	"log"
 	"sync"
 	"time"
 )
@@ -16,7 +15,7 @@ type DbPool struct {
 }
 
 func (dp *DbPool) Get(dbName string) (*gorm.DB, error) {
-	log.Printf("Get db:%v", dbName)
+	basicLog.Debugf("Get db:%v", dbName)
 	dp.mux.Lock()
 	defer dp.mux.Unlock()
 	if db, ok := dp.Dbs[dbName]; ok {
@@ -40,16 +39,14 @@ func (dp *DbPool) Get(dbName string) (*gorm.DB, error) {
 }
 
 func createNewDBConn(dbName string) (*gorm.DB, error) {
-	log.Printf("createNewDBConn")
-
 	mysqlAddr := config.Config().MysqlServer.Address
 	mysqlUserName := config.Config().MysqlServer.UserName
 	mysqlPassWord := config.Config().MysqlServer.PassWord
 	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?timeout=30s&charset=utf8mb4&collation=utf8mb4_general_ci&loc=Local&parseTime=true", mysqlUserName, mysqlPassWord, mysqlAddr, dbName)
-	log.Printf("mysql open addr:{dsn:%v", dsn)
+	basicLog.Debugf("mysql open addr:{dsn:%v", dsn)
 	db, err := gorm.Open("mysql", dsn)
 	if err != nil {
-		log.Printf("coon faul:%v", err.Error())
+		basicLog.Errorf("coon faul:%v", err.Error())
 		return nil, err
 	}
 	db.DB().SetMaxIdleConns(30)
@@ -58,7 +55,7 @@ func createNewDBConn(dbName string) (*gorm.DB, error) {
 
 	err = db.DB().Ping()
 	if err != nil {
-		log.Printf("ping error:%v", err.Error())
+		basicLog.Errorf("ping error:%v", err.Error())
 		return nil, err
 	}
 
@@ -68,10 +65,6 @@ func createNewDBConn(dbName string) (*gorm.DB, error) {
 }
 
 var ClientPool *DbPool
-
-func InitDb() {
-	NewDbPool()
-}
 
 func NewDbPool() *DbPool {
 	ClientPool = &DbPool{
@@ -83,7 +76,6 @@ func NewDbPool() *DbPool {
 }
 
 func GetMysqlPool() (*gorm.DB, error) {
-	log.Printf("start GetMysqlPool")
 	dbName := config.Config().MysqlServer.DefaultDbName
 	DbInstance, err := ClientPool.Get(dbName)
 	return DbInstance, err
@@ -94,7 +86,7 @@ func (dp *DbPool) CloseDb() {
 		return
 	}
 	for k, db := range dp.Dbs {
-		log.Printf("exit closing db coon:%v", k)
+		basicLog.Debugf("exit closing db coon:%v", k)
 		err := db.Close()
 		if err != nil {
 			return

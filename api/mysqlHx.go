@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
-	"goFix/dao"
+	"goFix/model"
 	"log"
 	"strconv"
 	"time"
@@ -18,7 +18,7 @@ type Animal struct {
 }
 
 func Mysqltd(c *gin.Context) {
-	db, err := dao.GetMysqlPool()
+	db, err := model.GetMysqlPool()
 	if err != nil {
 		log.Printf(err.Error())
 		return

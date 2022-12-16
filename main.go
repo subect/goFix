@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"goFix/api"
 	"goFix/config"
-	"goFix/dao"
+	"goFix/model"
 	router2 "goFix/router"
 	"net/http"
 	"os"
@@ -19,7 +19,7 @@ func main() {
 	wg.Add(1)
 	conf := config.InitConfig()
 	basicLog := conf.Logger()
-	dao.InitDb()
+	model.Init()
 	api.Init()
 	router2.Init()
 	router := router2.InitRouter()
