@@ -7,34 +7,34 @@ import (
 )
 
 type Configuration struct {
-	DevMode     bool        `yaml:"devMode"`
-	Service     Service     `yaml:"service"`
-	MysqlServer MysqlServer `yaml:"mysqlServer"`
-	RedisServer RedisServer `yaml:"redisServer"`
-	EsServer    EsServer    `yaml:"esServer"`
+	DevMode     bool        `yaml:"devMode" mapstructure:"devMode"`
+	Service     Service     `yaml:"service" mapstructure:"service"`
+	MysqlServer MysqlServer `yaml:"mysqlServer" mapstructure:"mysqlServer"`
+	RedisServer RedisServer `yaml:"redisServer" mapstructure:"redisServer"`
+	EsServer    EsServer    `yaml:"esServer" mapstructure:"esServer"`
 }
 
 type EsServer struct {
-	EsHost   string `yaml:"hosts"`
-	EsUser   string `yaml:"esUser"`
-	EsPasswd string `yaml:"esPassword"`
+	EsHost   string `yaml:"esHosts" mapstructure:"esHosts"`
+	EsUser   string `yaml:"esUser" mapstructure:"esUser"`
+	EsPasswd string `yaml:"esPassword" mapstructure:"esPassword"`
 }
 
 type Service struct {
-	ServerPort string `yaml:"serverPort"`
+	ServerPort string `yaml:"serverPort" mapstructure:"serverPort"`
 }
 
 type MysqlServer struct {
-	Address       string `yaml:"address"`
-	UserName      string `yaml:"userName"`
-	PassWord      string `yaml:"passWord"`
-	MysqlMaxDBs   int    `yaml:"mysqlMaxDBs"`
-	DefaultDbName string `yaml:"defaultDbName"`
+	Address       string `yaml:"address" mapstructure:"address"`
+	UserName      string `yaml:"userName" mapstructure:"userName"`
+	PassWord      string `yaml:"passWord" mapstructure:"passWord"`
+	MysqlMaxDBs   int    `yaml:"mysqlMaxDBs" mapstructure:"mysqlMaxDBs"`
+	DefaultDbName string `yaml:"defaultDbName" mapstructure:"defaultDbName"`
 }
 
 type RedisServer struct {
-	Address       string `yaml:"address"`
-	RedisPassword string `yaml:"redisPassword"`
+	Address       string `yaml:"address" mapstructure:"address"`
+	RedisPassword string `yaml:"passWord" mapstructure:"passWord"`
 }
 
 func NewConfig() *Configuration {
