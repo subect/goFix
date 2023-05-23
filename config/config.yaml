@@ -18,3 +18,13 @@ esServer:
   esHosts: "http://127.0.0.1:9200"
   esUser: ""
   esPassword: ""
+
+kafka:
+  brokers: "172.21.05:9092"
+  consumerGroupID: "huxiang"
+  goroutineCount: 20
+  producer:
+    topic: "huxiang"
+  comsumer:
+    topic: "huxiang"
+

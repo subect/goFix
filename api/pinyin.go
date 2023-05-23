@@ -1,13 +1,34 @@
 package api
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/mozillazg/go-pinyin"
+	"log"
+	"os"
+	"runtime/pprof"
 )
 
 func Pinyin(c *gin.Context) {
-	text := "我是刘德华"
-	a := pinyin.NewArgs()
-	a.Style = pinyin.Tone2
-	c.JSON(200, pinyin.Pinyin(text, a))
+	f, err := os.Create("cpu.prof")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer f.Close()
+
+	pprof.StartCPUProfile(f)
+	defer pprof.StopCPUProfile()
+
+	Mytttt()
+	c.JSON(200, "nihoa")
+}
+
+func Mytttt() {
+	for i := 0; i < 100; i++ {
+		for i := 0; i < 100; i++ {
+			for i := 0; i < 100; i++ {
+				fmt.Println("nibihagcg")
+			}
+		}
+	}
+
 }

@@ -12,6 +12,7 @@ type Configuration struct {
 	MysqlServer MysqlServer `yaml:"mysqlServer" mapstructure:"mysqlServer"`
 	RedisServer RedisServer `yaml:"redisServer" mapstructure:"redisServer"`
 	EsServer    EsServer    `yaml:"esServer" mapstructure:"esServer"`
+	KafkaConfig KafkaConf   `json:"kafka" yaml:"kafka" mapstructure:"kafka"`
 }
 
 type EsServer struct {
@@ -59,6 +60,24 @@ func Config() *Configuration {
 		panic("init config error")
 	}
 	return rootConfig
+}
+
+// KafkaConf kafka连接配置
+type KafkaConf struct {
+	Brokers         string `json:"brokers" yaml:"brokers" mapstructure:"brokers"`
+	ConsumerGroupID string `json:"consumerGroupID" yaml:"consumerGroupID" mapstructure:"consumerGroupID"`
+	GoroutineCount  int    `json:"goroutineCount" yaml:"goroutineCount" mapstructure:"goroutineCount"`
+	//Topic           string `json:"topic" yaml:"topic" mapstructure:"topic"`
+	Producer ProducerConf `json:"producer" yaml:"producer" mapstructure:"producer"`
+	Consumer ConsumerConf `json:"consumer" yaml:"consumer" mapstructure:"consumer"`
+}
+
+type ProducerConf struct {
+	Topic string `json:"topic" yaml:"topic" mapstructure:"topic"`
+}
+
+type ConsumerConf struct {
+	Topic string `json:"topic" yaml:"topic" mapstructure:"topic"`
 }
 
 func getDefaultConfigPath() string {

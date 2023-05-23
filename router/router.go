@@ -6,10 +6,23 @@ import (
 	"goFix/api"
 	"io/ioutil"
 	"net/http"
+	"net/http/pprof"
 )
 
 func InitRouter() *gin.Engine {
 	router := gin.Default()
+
+	// 在 /debug/pprof/ 路由下注册性能分析处理器
+	router.GET("/debug/pprof/", gin.WrapF(http.HandlerFunc(pprof.Index)))
+	router.GET("/debug/pprof/profile", gin.WrapF(http.HandlerFunc(pprof.Profile)))
+	router.GET("/debug/pprof/heap", gin.WrapF(http.HandlerFunc(pprof.Handler("heap").ServeHTTP)))
+	router.GET("/debug/pprof/block", gin.WrapF(http.HandlerFunc(pprof.Handler("block").ServeHTTP)))
+	router.GET("/debug/pprof/goroutine", gin.WrapF(http.HandlerFunc(pprof.Handler("goroutine").ServeHTTP)))
+	router.GET("/debug/pprof/threadcreate", gin.WrapF(http.HandlerFunc(pprof.Handler("threadcreate").ServeHTTP)))
+	router.GET("/debug/pprof/cmdline", gin.WrapF(http.HandlerFunc(pprof.Cmdline)))
+	router.GET("/debug/pprof/symbol", gin.WrapF(http.HandlerFunc(pprof.Symbol)))
+	router.POST("/debug/pprof/symbol", gin.WrapF(http.HandlerFunc(pprof.Symbol)))
+
 	router.Use(Mid())
 
 	router.GET("/", Hello)
@@ -23,6 +36,7 @@ func InitRouter() *gin.Engine {
 	router.GET("/pinyin", api.Pinyin)
 	router.POST("/filerKeyWords", api.FilerKeyWords)
 	router.GET("viper", api.Viper)
+	router.POST("/sendMsg", api.SendMsg) //kafka 发送消息
 
 	return router
 }
