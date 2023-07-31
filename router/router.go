@@ -1,10 +1,8 @@
 package router
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"goFix/api"
-	"io/ioutil"
 	"net/http"
 	"net/http/pprof"
 )
@@ -25,7 +23,7 @@ func InitRouter() *gin.Engine {
 
 	router.Use(Mid())
 
-	router.GET("/", Hello)
+	router.GET("/huTest", Hello)
 	router.POST("/", Hello)
 	router.GET("/trainDb", api.Mysqltd)
 	router.POST("/trainRedis", api.Redistd)
@@ -41,20 +39,34 @@ func InitRouter() *gin.Engine {
 	return router
 }
 
+type SearchResultResp struct {
+	Code int         `json:"code"`
+	Msg  string      `json:"msg"`
+	Data interface{} `json:"data"`
+}
+
+type SearchResultRespV1 struct {
+	Total int64        `json:"total"`
+	Data  []EsRespData `json:"data"`
+}
+
+type EsRespData struct {
+	Str string `json:"str"`
+}
+
 func Hello(c *gin.Context) {
-	if c.Request.Method == "GET" {
-		basicLog.Debugln("go into hello!")
-		c.JSON(200, "Success")
-	}
-	if c.Request.Method == "POST" {
-		bs, err := ioutil.ReadAll(c.Request.Body)
-		if err != nil {
-			fmt.Println(err.Error())
-		}
-		basicLog.Debugf("resp:%+v", string(bs))
-		c.JSON(200, string(bs))
-	}
-	//c.JSON(200, "Good")
+	var resp = new(SearchResultResp)
+	searchResultRespV1 := SearchResultRespV1{}
+	date := make([]EsRespData, 0)
+	datastr := EsRespData{}
+	datastr.Str = "1"
+	date = append(date, datastr)
+	searchResultRespV1.Data = date
+
+	resp.Code = 200
+	resp.Msg = "success"
+	resp.Data = searchResultRespV1.Data
+	c.JSON(200, resp)
 	return
 }
 
