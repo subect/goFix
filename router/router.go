@@ -36,6 +36,8 @@ func InitRouter() *gin.Engine {
 	router.GET("viper", api.Viper)
 	router.POST("/sendMsg", api.SendMsg) //kafka 发送消息
 
+	router.POST("/mysqlDbPool", api.MysqlDbPool)
+
 	return router
 }
 

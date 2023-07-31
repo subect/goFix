@@ -13,4 +13,6 @@ func Init() {
 	basicLog = conf.Logger()
 	NewDbPool()
 
+	initMysqlDB()
+
 }
