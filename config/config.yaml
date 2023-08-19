@@ -3,6 +3,13 @@ devMode: true
 service:
   serverPort: "8888"
 
+logger:
+  level: 0  # 0（debug以及以上） 1(info以及以上) 2(warn) 3 error
+  logDir: './logs'
+  fileTimeFormat: "2006-01-02-15" # 日期时间切割go-format格式
+  maxSizeM: 4096  # 单日志文件最大大小（MB）
+  rotateMaxAge: 10 # 日志文件最大保存天数 超过会删除
+
 mysqlServer:
   address: "127.0.0.1:3306"
   userName: "root"

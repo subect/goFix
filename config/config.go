@@ -7,12 +7,21 @@ import (
 )
 
 type Configuration struct {
-	DevMode     bool        `yaml:"devMode" mapstructure:"devMode"`
-	Service     Service     `yaml:"service" mapstructure:"service"`
-	MysqlServer MysqlServer `yaml:"mysqlServer" mapstructure:"mysqlServer"`
-	RedisServer RedisServer `yaml:"redisServer" mapstructure:"redisServer"`
-	EsServer    EsServer    `yaml:"esServer" mapstructure:"esServer"`
-	KafkaConfig KafkaConf   `json:"kafka" yaml:"kafka" mapstructure:"kafka"`
+	DevMode      bool        `yaml:"devMode" mapstructure:"devMode"`
+	Service      Service     `yaml:"service" mapstructure:"service"`
+	MysqlServer  MysqlServer `yaml:"mysqlServer" mapstructure:"mysqlServer"`
+	RedisServer  RedisServer `yaml:"redisServer" mapstructure:"redisServer"`
+	EsServer     EsServer    `yaml:"esServer" mapstructure:"esServer"`
+	KafkaConfig  KafkaConf   `json:"kafka" yaml:"kafka" mapstructure:"kafka"`
+	LoggerConfig LoggerConf  `json:"logger" yaml:"logger" mapstructure:"logger"`
+}
+
+type LoggerConf struct {
+	LogLevel       int    `json:"logLevel" yaml:"logLevel" mapstructure:"logLevel"`
+	LogDir         string `json:"logDir" yaml:"logDir" mapstructure:"logDir"`
+	MaxSizeM       int    `json:"maxSizeM" yaml:"maxSizeM" mapstructure:"maxSizeM"`
+	RotateMaxAge   int    `json:"rotateMaxAge" yaml:"rotateMaxAge" mapstructure:"rotateMaxAge"`
+	FileTimeFormat string `json:"fileTimeFormat" yaml:"fileTimeFormat" mapstructure:"fileTimeFormat"`
 }
 
 type EsServer struct {

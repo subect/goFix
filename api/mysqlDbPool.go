@@ -3,14 +3,21 @@ package api
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"goFix/model"
-	"log"
-
 	_ "github.com/go-sql-driver/mysql"
+	"goFix/model"
 )
 
 func MysqlDbPool(c *gin.Context) {
-	fmt.Println("start MysqlDbPool")
+
+	var userInfo model.User
+
+	dbClient := model.GetDb()
+	dbClient.Where("name = ?", "huxiang").Find(&userInfo)
+
+	fmt.Println("userInfo:", userInfo)
+	c.JSON(200, gin.H{"code": 200, "msg": "success", "data": userInfo})
+
+	//fmt.Println("start MysqlDbPool")
 
 	// 初始化数据库连接池
 	//initDB()
@@ -28,17 +35,17 @@ func MysqlDbPool(c *gin.Context) {
 	//fmt.Printf("Inserted ID: %d\n", lastInsertID)
 
 	// 查询数据
-	users, err := model.QueryData()
-	if err != nil {
-		log.Fatalf("failed to query data: %v", err)
-	}
-	fmt.Println("Users:")
-	for _, user := range users {
-		fmt.Printf("ID: %d, Name: %s, Age: %d\n", user.ID, user.Name, user.Age)
-	}
-
-	//respJson, _ := json.Marshal(users)
-	c.JSON(200, gin.H{"code": 200, "msg": "success", "data": users})
+	//users, err := model.QueryData()
+	//if err != nil {
+	//	log.Fatalf("failed to query data: %v", err)
+	//}
+	//fmt.Println("Users:")
+	//for _, user := range users {
+	//	fmt.Printf("ID: %d, Name: %s, Age: %d\n", user.ID, user.Name, user.Age)
+	//}
+	//
+	////respJson, _ := json.Marshal(users)
+	//c.JSON(200, gin.H{"code": 200, "msg": "success", "data": users})
 
 	//
 	//// 更新数据

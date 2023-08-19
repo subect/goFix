@@ -12,7 +12,7 @@ func Init() {
 	conf = config.InitConfig()
 	basicLog = conf.Logger()
 	NewDbPool()
-
+	Initialize()
 	initMysqlDB()
 
 }

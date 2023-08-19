@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"goFix/api"
 	"goFix/config"
+
 	"goFix/model"
 	router2 "goFix/router"
 	"net/http"
@@ -65,6 +66,7 @@ func main() {
 	signal.Notify(sigChan, syscall.SIGHUP, syscall.SIGINT, syscall.SIGQUIT, syscall.SIGTERM)
 	fmt.Println("use c-c to exit")
 	<-sigChan
+	// 在程序退出之前关闭数据库连接
+	model.CloseDb()
 	os.Exit(0)
-
 }
