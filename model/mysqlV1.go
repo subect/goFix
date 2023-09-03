@@ -2,7 +2,7 @@ package model
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/subect/go-component-library/mysql"
+	"go-component-library/mysql"
 )
 
 var dbClient *gorm.DB

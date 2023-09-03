@@ -1,21 +1,53 @@
 package api
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/jinzhu/gorm"
+	"go-component-library/mysql"
 	"goFix/model"
+	"log"
 )
+
+type Apple struct {
+	gorm.Model
+	Name  string `json:"name"`
+	Age   int    `json:"age"`
+	Color string `json:"color"`
+	Size  string `json:"size"`
+}
 
 func MysqlDbPool(c *gin.Context) {
 
-	var userInfo model.User
-
 	dbClient := model.GetDb()
-	dbClient.Where("name = ?", "huxiang").Find(&userInfo)
 
-	fmt.Println("userInfo:", userInfo)
-	c.JSON(200, gin.H{"code": 200, "msg": "success", "data": userInfo})
+	//mysql.CreateTable(dbClient, "apple", &apple)
+	//apple := Apple{Name: "huxiang", Age: 18, Color: "red", Size: "big"}
+	//mysql.Insert(dbClient, &apple)
+	//c.JSON(200, gin.H{"code": 200, "msg": "success", "data": apple})
+
+	//var apple Apple
+	apple := Apple{
+		Name: "huxiang",
+	}
+
+	//mapStr := make(map[string]interface{})
+	//mapStr["name"] = "huxiang"
+
+	mapStr := map[string]interface{}{"Name": "huxiang"}
+
+	var allple Apple
+
+	err := mysql.FindByWhere(dbClient, &allple, mapStr)
+	if err != nil {
+		log.Fatalf("failed to query data: %v", err)
+	}
+	c.JSON(200, gin.H{"code": 200, "msg": "success", "data": apple})
+
+	//dbClient.Where("name = ?", "huxiang").Find(&userInfo)
+	//
+	//fmt.Println("userInfo:", userInfo)
+	//c.JSON(200, gin.H{"code": 200, "msg": "success", "data": userInfo})
 
 	//fmt.Println("start MysqlDbPool")
 
